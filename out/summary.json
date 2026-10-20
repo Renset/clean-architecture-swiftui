@@ -1,0 +1,132 @@
+{
+ "generated_utc": "2026-10-20T18:55:50.008047+00:00",
+ "errors": [],
+ "candidates": {
+  "ir": [
+   "mtg_fd:ir105_hrfi",
+   "msg_fes:ir108"
+  ],
+  "nightmicro": [],
+  "wv": [
+   "msg_fes:wv062"
+  ],
+  "airmass": [
+   "msg_fes:rgb_airmass",
+   "msg_fes:rgb_tropicalairmass"
+  ],
+  "dust": [
+   "mtg_fd:rgb_dust",
+   "msg_fes:rgb_dust"
+  ],
+  "cloudtype": [
+   "mtg_fd:rgb_cloudtype"
+  ],
+  "cth": [
+   "msg_fes:cth"
+  ],
+  "geocolour": [
+   "mtg_fd:rgb_geocolour"
+  ],
+  "overlay": [
+   "osmgray:ne_10m_admin_0_boundary_lines_land",
+   "backgrounds:ne_10m_coastline",
+   "backgrounds:ne_boundary_lines_land"
+  ]
+ },
+ "chosen": {
+  "ir": [
+   "mtg_fd:ir105_hrfi",
+   "msg_fes:ir108"
+  ],
+  "nightmicro": [],
+  "wv": [
+   "msg_fes:wv062"
+  ],
+  "airmass": [
+   "msg_fes:rgb_airmass"
+  ],
+  "dust": [
+   "mtg_fd:rgb_dust",
+   "msg_fes:rgb_dust"
+  ],
+  "cloudtype": [
+   "mtg_fd:rgb_cloudtype"
+  ],
+  "cth": [
+   "msg_fes:cth"
+  ],
+  "geocolour": [
+   "mtg_fd:rgb_geocolour"
+  ]
+ },
+ "images": [
+  "latest_local_ir_mtg_fd_ir105_hrfi.jpg",
+  "latest_wide_ir_mtg_fd_ir105_hrfi.jpg",
+  "latest_local_ir_msg_fes_ir108.jpg",
+  "latest_wide_ir_msg_fes_ir108.jpg",
+  "latest_local_wv_msg_fes_wv062.jpg",
+  "latest_wide_wv_msg_fes_wv062.jpg",
+  "latest_local_airmass_msg_fes_rgb_airmass.jpg",
+  "latest_wide_airmass_msg_fes_rgb_airmass.jpg",
+  "latest_local_dust_mtg_fd_rgb_dust.jpg",
+  "latest_local_dust_msg_fes_rgb_dust.jpg",
+  "latest_local_cloudtype_mtg_fd_rgb_cloudtype.jpg",
+  "latest_local_cth_msg_fes_cth.jpg",
+  "latest_local_geocolour_mtg_fd_rgb_geocolour.jpg",
+  "anim_ir_mtg_fd_ir105_hrfi.jpg",
+  "prev_local_ir.jpg",
+  "anim_wv_msg_fes_wv062.jpg",
+  "prev_local_wv.jpg"
+ ],
+ "ir_at_gardos": [
+  {
+   "time": "2026-10-20T15:30:00.000Z",
+   "layer": "mtg_fd:ir105_hrfi",
+   "value": {
+    "GRAY_INDEX": 215
+   }
+  },
+  {
+   "time": "2026-10-20T16:00:00.000Z",
+   "layer": "mtg_fd:ir105_hrfi",
+   "value": {
+    "GRAY_INDEX": 213
+   }
+  },
+  {
+   "time": "2026-10-20T16:30:00.000Z",
+   "layer": "mtg_fd:ir105_hrfi",
+   "value": {
+    "GRAY_INDEX": 210
+   }
+  },
+  {
+   "time": "2026-10-20T17:00:00.000Z",
+   "layer": "mtg_fd:ir105_hrfi",
+   "value": {
+    "GRAY_INDEX": 207
+   }
+  },
+  {
+   "time": "2026-10-20T17:30:00.000Z",
+   "layer": "mtg_fd:ir105_hrfi",
+   "value": {
+    "GRAY_INDEX": 208
+   }
+  },
+  {
+   "time": "2026-10-20T18:00:00.000Z",
+   "layer": "mtg_fd:ir105_hrfi",
+   "value": {
+    "GRAY_INDEX": 207
+   }
+  },
+  {
+   "time": "2026-10-20T18:30:00.000Z",
+   "layer": "mtg_fd:ir105_hrfi",
+   "value": {
+    "GRAY_INDEX": 206
+   }
+  }
+ ]
+}
