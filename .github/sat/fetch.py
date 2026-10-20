@@ -24,6 +24,7 @@ NOW = dt.datetime.now(UTC)
 REGIONS = {
     "local": ((11.0, 40.5, 28.0, 49.5), 1020, 540),
     "wide": ((-6.0, 34.0, 38.0, 58.0), 1100, 600),
+    "zoom": ((16.0, 42.5, 24.5, 47.5), 850, 500),
 }
 CATS = {
     "ir": r"ir_?10[58]|ir_?10\.[58]",
@@ -36,7 +37,8 @@ CATS = {
     "geocolour": r"geocolou?r",
 }
 WIDE_CATS = {"ir", "nightmicro", "wv", "airmass"}
-ANIM_CATS = ["ir", "nightmicro", "wv"]
+# (category, region, span hours, minutes between frames, sheet columns)
+ANIM = [("ir", "local", 3, 30, 3), ("wv", "local", 3, 30, 3), ("dust", "zoom", 2, 10, 4), ("ir", "zoom", 2, 10, 4)]
 
 S = requests.Session()
 S.headers["User-Agent"] = "astro-cloud-check/1.0 (GitHub Actions)"
@@ -290,7 +292,7 @@ def satellite():
             times = times_of(layers[n]["time"])
             t = times[-1] if times else None
             for reg, (bbox, w, h) in REGIONS.items():
-                if reg == "wide" and cat not in WIDE_CATS:
+                if reg == "zoom" or (reg == "wide" and cat not in WIDE_CATS):
                     continue
                 try:
                     img = decorate(getmap(n, bbox, w, h, t), bbox, overlays[reg])
@@ -299,28 +301,27 @@ def satellite():
                 except Exception as e:
                     err(f"latest {n} {reg}: {e}")
 
-    # 3 h of frames for motion
-    bbox, w, h = REGIONS["local"]
-    for cat in ANIM_CATS:
+    # frame sequences for motion
+    for cat, reg, span_h, every_min, cols in ANIM:
         if not chosen.get(cat):
             continue
         n = chosen[cat][0]
+        bbox, w, h = REGIONS[reg]
         frames = []
-        for t in pick_frames(times_of(layers[n]["time"])):
+        for t in pick_frames(times_of(layers[n]["time"]), span_h, every_min):
             try:
-                frames.append((t, decorate(getmap(n, bbox, w, h, t), bbox, overlays["local"])))
+                frames.append((t, decorate(getmap(n, bbox, w, h, t), bbox, overlays[reg])))
             except Exception as e:
                 err(f"frame {n} {t}: {e}")
-            if cat == "ir":
+            if cat == "ir" and reg == "local":
                 try:
                     summary["ir_at_gardos"].append({"time": tstr(t), "layer": n, "value": featureinfo(n, t)})
                 except Exception as e:
                     err(f"featureinfo {n} {t}: {e}")
         if frames:
-            save(sheet(frames), f"anim_{cat}_{n.replace(':', '_')}.jpg")
-            save(label(frames[-2][1] if len(frames) > 1 else frames[-1][1], f"{n}  {when(frames[-2][0] if len(frames) > 1 else frames[-1][0])}"),
-                 f"prev_local_{cat}.jpg")
-
+            save(sheet(frames, cols), f"anim_{reg}_{cat}_{n.replace(':', '_')}.jpg")
+            t, last = frames[-1]
+            save(label(last, f"{n}  {when(t)}"), f"last_{reg}_{cat}.jpg")
 
 OM = "https://api.open-meteo.com/v1/forecast"
 HOURLY = ("cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high,relative_humidity_2m,temperature_2m,"
