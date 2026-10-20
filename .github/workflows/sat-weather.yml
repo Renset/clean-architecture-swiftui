@@ -1,0 +1,32 @@
+name: sat-weather
+
+on:
+  push:
+    branches: [sat-weather-tmp]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sat-weather
+  cancel-in-progress: true
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests pillow ephem
+      - run: rm -rf out && python .github/sat/fetch.py out
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+          git add -A out
+          git commit -m "Satellite snapshot $(date -u +%Y-%m-%dT%H:%MZ)" || exit 0
+          git pull --rebase origin sat-weather-tmp
+          git push origin HEAD:sat-weather-tmp
