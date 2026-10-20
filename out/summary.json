@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-20T18:55:50.008047+00:00",
+ "generated_utc": "2026-10-20T18:57:48.470930+00:00",
  "errors": [],
  "candidates": {
   "ir": [
@@ -73,10 +73,14 @@
   "latest_local_cloudtype_mtg_fd_rgb_cloudtype.jpg",
   "latest_local_cth_msg_fes_cth.jpg",
   "latest_local_geocolour_mtg_fd_rgb_geocolour.jpg",
-  "anim_ir_mtg_fd_ir105_hrfi.jpg",
-  "prev_local_ir.jpg",
-  "anim_wv_msg_fes_wv062.jpg",
-  "prev_local_wv.jpg"
+  "anim_local_ir_mtg_fd_ir105_hrfi.jpg",
+  "last_local_ir.jpg",
+  "anim_local_wv_msg_fes_wv062.jpg",
+  "last_local_wv.jpg",
+  "anim_zoom_dust_mtg_fd_rgb_dust.jpg",
+  "last_zoom_dust.jpg",
+  "anim_zoom_ir_mtg_fd_ir105_hrfi.jpg",
+  "last_zoom_ir.jpg"
  ],
  "ir_at_gardos": [
   {
